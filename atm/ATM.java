@@ -2,7 +2,7 @@ package atm;
 
 import java.util.Scanner;
 
-public class ATM {
+class ATM {
     private BankAccount account;
     private Scanner scanner;
 
@@ -22,14 +22,20 @@ public class ATM {
 
             int choice = scanner.nextInt();
             switch (choice) {
-                case 1 -> handleWithdrawal();
-                case 2 -> handleDeposit();
-                case 3 -> System.out.println("Current Balance: " + getBalance());
-                case 4 -> {
+                case 1:
+                    handleWithdrawal();
+                    break;
+                case 2:
+                    handleDeposit();
+                    break;
+                case 3:
+                    System.out.println("Current Balance: " + account.getBalance());
+                    break;
+                case 4:
                     System.out.println("Thank you for using the ATM.");
                     return;
-                }
-                default -> System.out.println("Invalid choice. Please try again.");
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }
@@ -37,24 +43,12 @@ public class ATM {
     private void handleWithdrawal() {
         System.out.print("Enter withdrawal amount: ");
         double amount = scanner.nextDouble();
-        withdraw(amount);
+        account.withdraw(amount);
     }
 
     private void handleDeposit() {
         System.out.print("Enter deposit amount: ");
         double amount = scanner.nextDouble();
-        deposit(amount);
-    }
-
-    private double getBalance() {
-        return account.getBalance();
-    }
-
-    private void withdraw(double amount) {
-        account.withdraw(amount);
-    }
-
-    private void deposit(double amount) {
         account.deposit(amount);
     }
 }
